@@ -6,3 +6,6 @@
 -tipos de parametros de una ruta:
     1= ruta se separan con /
     2= los de consulta se separan con ?, &
+
+    PUT -> ACTUALIZAR
+    
