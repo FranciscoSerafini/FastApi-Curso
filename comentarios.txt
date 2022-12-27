@@ -2,3 +2,7 @@
 -instalamos la libreria fastAPI y un servidor llamado uvicorn
 -comandos para la instalacion : en el entorno de desarrollo -> pip install fastapi
     para la instalacion de la libreria -> pip install "uvicorn[standard]"
+
+-tipos de parametros de una ruta:
+    1= ruta se separan con /
+    2= los de consulta se separan con ?, &
