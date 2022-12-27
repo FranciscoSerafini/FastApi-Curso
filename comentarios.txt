@@ -1,0 +1,4 @@
+-con venv creeamos un ambiente virtual, lo activamos con un comand promnt, ya que en la terminal comun nos tira un error
+-instalamos la libreria fastAPI y un servidor llamado uvicorn
+-comandos para la instalacion : en el entorno de desarrollo -> pip install fastapi
+    para la instalacion de la libreria -> pip install "uvicorn[standard]"
