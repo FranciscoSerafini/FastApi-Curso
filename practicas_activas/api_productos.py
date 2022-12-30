@@ -1,3 +1,5 @@
+#modulos incorporados
+from uuid import uuid4 as uuid #genera id para productos
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
@@ -25,5 +27,6 @@ def obtener_productos():
 #post = creacion de datos 
 @app.post('/prodcuto') #crear datos con post
 def crear_producto(producto:producto):
+    producto.id = str(uuid())
     productos.append(producto)
     return{'mensaje': 'Producto creado satisfactoriamente.'}
