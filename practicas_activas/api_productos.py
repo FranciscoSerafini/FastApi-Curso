@@ -18,3 +18,7 @@ productos = []
 @app.get('/') #ruta de bienvenida
 def index():
     return{'mensaje':'Bienvenidos a la API de prodcutos'}
+
+@app.get('/producto')
+def obtener_productos():
+    return productos
