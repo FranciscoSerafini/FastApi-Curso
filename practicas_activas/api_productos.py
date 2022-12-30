@@ -1,8 +1,21 @@
 #modulos incorporados
 from uuid import uuid4 as uuid #genera id para productos
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+ 
+
+app = FastAPI()
+
+items = {"foo": "The Foo Wrestlers"}
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: str):
+    if item_id not in items:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {"item": items[item_id]}
+
 
 #creamos un modelo
 class producto(BaseModel):
@@ -33,9 +46,13 @@ def crear_producto(producto:producto):
 
 @app.get('/producto/{producto_id}')
 def obtener_producto_porId(producto_id:str):
-    for p in productos:
-        if p.id == producto_id:
-            return p
+    resultado = list( filter(lambda p: p.id == producto_id, productos))
+   
+    if len(resultado):
+        return resultado[0]
     
-    return{'mensaje':'El producto con el id {producto_id} no fue encontrado'}
+    #generamos una exception si no se encuentra el producto
+
+    
+    raise HTTPException(status_code= 404, detail= f'El producto con el ID {producto_id} no fue encontrado')
 
