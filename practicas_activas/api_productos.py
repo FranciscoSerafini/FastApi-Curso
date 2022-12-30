@@ -18,11 +18,11 @@ productos = []
 @app.get('/') #ruta de bienvenida
 def index():
     return{'mensaje':'Bienvenidos a la API de prodcutos'}
-
+#get = obtencion de datos
 @app.get('/producto')
 def obtener_productos():
     return productos
-
+#post = creacion de datos 
 @app.post('/prodcuto') #crear datos con post
 def crear_producto(producto:producto):
     productos.append(producto)
