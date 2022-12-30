@@ -25,7 +25,7 @@ class producto(BaseModel):
     precio_venta:float
     proveedor:str
 
-    
+ #creamo la API   
 app = FastAPI() 
 #creamos una lista de prodcutos
 productos = []
@@ -56,3 +56,16 @@ def obtener_producto_porId(producto_id:str):
     
     raise HTTPException(status_code= 404, detail= f'El producto con el ID {producto_id} no fue encontrado')
 
+
+#delete=utilizamos para eliminar datos
+@app.delete('/producto/{producto_id}')
+def eliminar_producto_id(producto_id :str):
+    resultado = list(filter(lambda p: p.id == producto_id, productos))
+   
+    if len(resultado):
+        producto = resultado[0]
+        productos.remove(producto)
+        return {'mensaje':'El producto con ID {producto_id} fue eliminado'}
+    
+    #generamos una exception si no se encuentra el producto
+    raise HTTPException(status_code= 404, detail= 'El producto con el ID {producto_id} no fue encontrado')
