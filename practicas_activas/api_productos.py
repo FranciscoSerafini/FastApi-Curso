@@ -45,7 +45,7 @@ def crear_producto(producto:producto):
     return{'mensaje': 'Producto creado satisfactoriamente.'}
 
 @app.get('/producto/{producto_id}')
-def obtener_producto_porId(producto_id:str):
+def buscar_producto_porId(producto_id:str):
     resultado = list( filter(lambda p: p.id == producto_id, productos))
    
     if len(resultado):
@@ -68,4 +68,20 @@ def eliminar_producto_id(producto_id :str):
         return {'mensaje':'El producto con ID {producto_id} fue eliminado'}
     
     #generamos una exception si no se encuentra el producto
+    raise HTTPException(status_code= 404, detail= 'El producto con el ID {producto_id} no fue encontrado')
+
+
+@app.put('/producto/{producto_id}')
+def actualizar_producto(producto_id:str, producto:producto):
+    resultado = list(filter(lambda p: p.id == producto_id, productos))
+   
+    if len(resultado):
+        producto_encontrado = resultado[0]
+        producto_encontrado.nombre = producto.nombre
+        producto_encontrado.precio_compra = producto.precio_compra
+        producto_encontrado.precio_venta = producto.precio_venta
+        producto_encontrado.proveedor = producto.proveedor
+
+        return producto_encontrado
+    
     raise HTTPException(status_code= 404, detail= 'El producto con el ID {producto_id} no fue encontrado')
