@@ -26,7 +26,7 @@ class producto(BaseModel):
     proveedor:str
 
  #creamo la API   
-app = FastAPI() 
+app = FastAPI() #instanciacion de la app
 #creamos una lista de prodcutos
 productos = []
 
