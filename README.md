@@ -5,4 +5,4 @@ explicaciones que podemos tener en cuenta:
 https://www.youtube.com/playlist?list=PL2PZw96yQChzll2RHgViiQ8eUvIQycAVl
 
 https://www.youtube.com/watch?v=_y9qQZXE24A
-https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/FkiNDAoXoAobi0v.png
+
