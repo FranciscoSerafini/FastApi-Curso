@@ -15,22 +15,37 @@ class user(BaseModel):
     age:int
 
 
-users_list = [user(name="Francisco", surname ="Serafini", url="https://moure.dev", age= 23 ),
-                user(name="Francis", surname ="DEV", url="https://Francisco.dev.com", age=23 ),        
-                user(name="Fran", surname ="Developer",url= "https://Fran.dev.com.ar", age= 23 )]
+users_list = [  user  ( id=1 ,name="Francisco", surname ="Serafini", url="https://moure.dev", age= 23 ),
+                user(id=2 ,name="Francis", surname ="DEV", url="https://Francisco.dev.com", age=23 ),        
+                user(id=3 ,name="Fran", surname ="Developer",url= "https://Fran.dev.com.ar", age= 23 )]
 
 
 @app.get("/usersjson")
 async def usersjson():
-    return [{"name": "Francisco", "surname": "Serafini", "url":"https://moure.dev","age":23 },
-            {"name": "Francis", "surname": "DEV", "url":"https://Francisco.dev.com","age":23},
-            {"name": "Fran", "surname": "Developer", "url":"https://Fran.dev.com.ar","age":23 }]
+    return [{"id":"1","name": "Francisco", "surname": "Serafini", "url":"https://moure.dev","age":23 },
+            {"id":"2","name": "Francis", "surname": "DEV", "url":"https://Francisco.dev.com","age":23},
+            {"id":"3","name": "Fran", "surname": "Developer", "url":"https://Fran.dev.com.ar","age":23 }]
 
 @app.get("/users")
 async def users():
     return users_list
 
-
+#path
+@app.get("/user_francisco/{id}") 
+async def user(id:int):
+    users = filter(lambda user: user.id == id, users_list)
+    try:
+        return list (users_list)[0]
+    except:
+        return {'No se encontrado el usuario':'error'}
+#query
+@app.get("/userquery") 
+async def user(id:int):
+    users = filter(lambda user: user.id == id, users_list)
+    try:
+        return list (users_list)[0]
+    except:
+        return {'No se encontrado el usuario':'error'}
 #hora de video 2:06
 
 
