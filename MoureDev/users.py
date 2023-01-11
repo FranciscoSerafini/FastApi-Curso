@@ -46,6 +46,38 @@ async def user(id:int):
         return list (users_list)[0]
     except:
         return {'No se encontrado el usuario':'error'}
-#hora de video 2:06
+
+
+@app.post("/user/") #post = crear datos
+async def user(Users:user):
+    if search_user(user.id):
+     users_list.append(user)
+
+def search_user(id: int):
+    users = filter(lambda user: user.id == id, users_list)
+    try:
+        return list(users)[0]
+    except:
+        return {"error": "No se ha encontrado el usuario"}
+
+
+
+@app.put("/user/")
+async def user(user:user):
+
+    found = False
+
+    for  index, saved_user in enumerate(users_list) :
+        if saved_user.id == user.id:
+            users_list[index] = user
+            found = True
+
+    if not found:
+        return  {"error": "No se ha actualziado el usuario"}
+
+
+
+
+
 
 
